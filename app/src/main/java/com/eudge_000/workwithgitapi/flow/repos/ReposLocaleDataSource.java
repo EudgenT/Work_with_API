@@ -21,7 +21,7 @@ public class ReposLocaleDataSource extends BaseLocaleDataSource implements Repos
     public Single<List<Repo>> getRepos(String user) {
         return Single.create(subscriber -> {
             realm.executeTransaction(innerRealm -> {
-                RealmResults<Repo> results = innerRealm.where(Repo.class).findAll();
+                RealmResults<Repo> results = innerRealm.where(Repo.class).equalTo("name", user).findAll();
                 if (results == null) {
                     subscriber.onError(new Exception("vse ploho"));
                 } else {
