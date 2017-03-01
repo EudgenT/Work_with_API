@@ -23,13 +23,13 @@ public class ReposLocaleDataSource extends BaseLocaleDataSource implements Repos
             realm.executeTransaction(innerRealm -> {
                 RealmResults<Repo> results = innerRealm.where(Repo.class).equalTo("name", user).findAll();
                 if (results == null) {
-                    subscriber.onError(new Exception("vse ploho"));
+                    subscriber.onError(new Exception("result is null"));
                 } else {
                     List<Repo> repos = innerRealm.copyFromRealm(results);
                     if (repos != null) {
                         subscriber.onSuccess(repos);
                     } else {
-                        subscriber.onError(new Exception("vse ploho2"));
+                        subscriber.onError(new Exception("result is null"));
                     }
                 }
             });

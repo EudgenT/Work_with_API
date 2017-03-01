@@ -4,6 +4,9 @@ import android.content.Context;
 
 import com.eudge_000.workwithgitapi.flow.repos.ReposDataSource;
 import com.eudge_000.workwithgitapi.flow.repos.ReposRepository;
+import com.eudge_000.workwithgitapi.model.Repo;
+
+import java.util.List;
 
 import rx.Single;
 import rx.internal.util.SubscriptionList;
@@ -24,11 +27,12 @@ public class ReposPresenter implements ReposDataSource {
     }
 
     @Override
-    public Single getRepos(String user) {
-        return (Single) mReposRepository.getRepos(user)
+    public Single<List<Repo>> getRepos(String user) {
+         mReposRepository.getRepos(user)
                 .subscribe(list -> {
                     mReposView.showRepos(list);
                 }, Throwable::printStackTrace);
+        return null;
     }
 
     @Override

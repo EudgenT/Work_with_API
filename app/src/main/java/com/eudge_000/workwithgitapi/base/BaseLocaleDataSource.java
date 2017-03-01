@@ -10,6 +10,6 @@ public abstract class BaseLocaleDataSource implements BaseDataSource{
 
     @Override
     public void init(Context context) {
-        realm.getDefaultInstance();
+        realm = Realm.getDefaultInstance();
     }
 }

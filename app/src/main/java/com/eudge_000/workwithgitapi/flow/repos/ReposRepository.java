@@ -17,10 +17,9 @@ public class ReposRepository implements ReposDataSource {
     @Override
     public Single<List<Repo>> getRepos(String user) {
         return mReposRemoteDataSource.getRepos(user)
-                .flatMap(list -> {
-                    return mReposLocaleDataSource.saveRepos(list);})
-                .onErrorResumeNext(mReposLocaleDataSource.getRepos(user))
-                .observeOn(AndroidSchedulers.mainThread());
+                .observeOn(AndroidSchedulers.mainThread())
+                .flatMap(list -> mReposLocaleDataSource.saveRepos(list))
+                .onErrorResumeNext(mReposLocaleDataSource.getRepos(user));
     }
 
     @Override

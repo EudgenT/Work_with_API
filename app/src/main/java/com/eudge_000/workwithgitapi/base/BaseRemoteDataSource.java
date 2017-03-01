@@ -10,7 +10,7 @@ import rx.schedulers.Schedulers;
 public abstract class BaseRemoteDataSource implements BaseDataSource {
 
     protected ReposService reposService = null;
-    static final protected String BASE_URL = "https://api.github.com/";
+    private static final String BASE_URL = "https://api.github.com/";
 
     @Override
     public void init(Context context) {
